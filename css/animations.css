@@ -1,0 +1,28 @@
+.box {
+    width: 100px;
+    height:100px;
+    background:#333;
+    border-radius:50%;
+    border-style:dotted;
+    border-width: 20px;
+    border-color:#fff;
+    animation: moveRight 5s ease-out infinite;
+}
+
+@keyframes moveRight {
+    0%{
+        margin-left:0;
+        transform: rotate(0deg);
+    }
+    30%{
+        background:#a00;
+    }
+    50%{
+        margin-left:70%;
+        transform: rotate(360deg);
+    }
+    100%{
+        margin-left:0;
+        transform: rotate(0deg);
+    }
+}

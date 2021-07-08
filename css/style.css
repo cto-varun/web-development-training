@@ -1,0 +1,32 @@
+.row {
+    width: 100%;
+    height: 200px;
+    background: #ccc;
+    margin-top: 5px;
+}
+
+.box {
+    background-color: #000;
+    color: #fff;
+    height: 200px;
+    width: 200px;
+    float: left;
+}
+
+.red {
+    background-color: #a00;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.green {
+    background-color: #080;
+}
+.margin-left-10{
+        margin-left: 38px;
+}
+.padding-left-10 {
+    padding-left: 10px;
+}

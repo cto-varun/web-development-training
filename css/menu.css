@@ -1,0 +1,30 @@
+ul {
+    list-style-type: none;
+    padding:0;
+    margin:0;
+}
+
+ul li{
+    background:#333;
+    color:#e5e5e5;
+    width: 150px;
+    font-size:11px;
+    float:left;
+    text-align:center;
+    /* padding-top:10px;
+    padding-bottom:10px; */
+    padding:10px 0;
+    transition: all 0.25s ease-out 0s;
+}
+ul li:hover {
+    background:#e5e5e5;
+    /* padding-top:15px; */
+    color:#333;
+    cursor: pointer;
+}
+ul li ul {
+    display: none;
+}
+ul li:hover > ul {
+    display: block;
+}

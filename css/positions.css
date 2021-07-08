@@ -1,0 +1,33 @@
+/* .parent {
+    width:200px;
+    height:200px;
+    position:relative;
+    background-color: #000;
+}
+.child {
+    width:100px;
+    height:100px;
+    background:#a00;
+    position:absolute;
+    top:0;
+    left:0;
+} */
+
+.one {
+    width:100px;
+    height:100px;
+    background:#a00;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: 0;
+}
+.two {
+    width:100px;
+    height:100px;
+    background:#080;
+    position:absolute;
+    top:50px;
+    left:50px;
+    z-index: 1;
+}

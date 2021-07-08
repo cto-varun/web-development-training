@@ -1,0 +1,30 @@
+.parent {
+    width: 100%;
+    height: 500px;
+    background: #ccc;
+    margin-top: 5px;
+    display:flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    gap:5px;
+    /* flex-direction: column-reverse; */
+}
+
+.box {
+    background-color: #000;
+    color: #fff;
+    flex:1;
+    /* height: 20px; */
+    /* width: 200px; */
+    font-size: 1.3vw;
+}
+/* .more-width {
+    flex:2;
+} */
+.box:nth-child(2){
+   flex:2; 
+}
+.red {
+    background-color: #a00;
+}
+
