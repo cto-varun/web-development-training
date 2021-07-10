@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms in HTML</title>
+    <link rel="stylesheet" href="./css/forms.css">
+</head>
+
+<body>
+    <form action="forms.html" method="post">
+        <div class="container">
+            <div class="row">
+                <div class="box">Enter Email</div>
+                <div class="box">
+                    <input name="email" type="email" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="box">Enter Password</div>
+                <div class="box">
+                    <input name="password" type="password" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="box">Select Country</div>
+                <div class="box">
+                    <select name="country" id="country">
+                        <option value="0">Select Country</option>
+                        <option value="1">India</option>
+                        <option value="2">USA</option>
+                        <option value="3">Canada</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="box">Select Gender</div>
+                <div class="box">
+                    <input type="radio" name="gender"> Male
+                    <input type="radio" name="gender"> Female
+                </div>
+            </div>
+            <div class="row">
+                <div class="box">Select Hobbies</div>
+                <div class="box">
+                    <input type="checkbox" /> Cricket
+                    <input type="checkbox" /> Indoor Games
+                    <input type="checkbox" /> Lan Gaming
+                </div>
+            </div>
+            <div class="row">
+                <div class="box"></div>
+                <div class="box">
+                    <button type="submit">Save User</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
