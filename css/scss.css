@@ -1,0 +1,34 @@
+div {
+  background: #070;
+  color: #fff;
+}
+div p {
+  color: #fff;
+  background: #333;
+}
+
+p {
+  background: #e5e5e5;
+  color: #333;
+  padding: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  background: #333;
+  gap: 5px;
+}
+ul li {
+  flex: 1;
+  color: #333;
+  padding: 5px;
+  background: #e5e5e5;
+}
+
+/*# sourceMappingURL=scss.css.map */

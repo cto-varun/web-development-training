@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&family=Zen+Tokyo+Zoo&display=swap');
+
+div{
+    /* font-family: 'Encode Sans SC', sans-serif; */
+    font-family: 'Zen Tokyo Zoo', cursive;
+}

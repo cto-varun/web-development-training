@@ -8,18 +8,20 @@
     display: flex;
     flex-direction: column;
     box-shadow: 1px 1px 10px #888;
+    overflow: hidden;
 }
 .box:hover {
     box-shadow: 1px 1px 15px #888;
 }
 .box:hover > .img-container {
     opacity: 0.5;
-    flex:1;
+    /* flex:1; */
+    transform:scale(1.1);
 }
 .box:hover > .text-container {
  /* border-top-right-radius:20px; 
      border-top-left-radius:20px; */
-     flex:5;
+     /* flex:5; */
      background:#333;
 }
 .img-container {
