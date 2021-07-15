@@ -17,9 +17,10 @@
     </style>
 </head>
 
-<body>
-    <input type="text" id="username" onkeyup="getUsername()" onblur="resetInputBox()" />
-    <!-- <button onclick="getUsername()">Get Username</button> -->
+<body onload="attachListeners()">
+    <!-- <input type="text" id="username" onkeyup="getUsername()" onblur="resetInputBox()" /> -->
+    <input type="text" id="username" />
+    <button id="getUserButton">Get Username</button>
     <h1 id="result">Your box is empty</h1>
     <script src="./js/forms.js"></script>
 </body>

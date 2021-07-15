@@ -15,3 +15,11 @@ function getUsername() {
 function resetInputBox() {
     usernameBox.style.width = "150px";
 }
+
+function attachListeners() {
+    let getUserButton = document.getElementById("getUserButton");
+    getUserButton.addEventListener("click", function (e) {
+        // console.log(e);
+        getUsername();
+    });
+}
