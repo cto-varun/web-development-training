@@ -1,0 +1,17 @@
+ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+.highlight{
+    background:#333;
+    color:#e5e5e5;
+}
+.highlight-opposite{
+    color:#333;
+    background:#e5e5e5;
+}
+.red-bg{
+    background:#800;
+}
