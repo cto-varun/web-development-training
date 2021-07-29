@@ -9,28 +9,27 @@
     <link rel="stylesheet" href="./css/software.css">
 </head>
 
-<body>
+<body onload="populateItems()">
     <div class="container">
         <div class="row header"></div>
         <!-- input container starts here!!! -->
         <div class="row">
             <div class="input-container">
                 <div>
-                    <select name="items" id="items">
-                        <option value="0">Select Item</option>
-                        <option value="0">Pizza</option>
-                        <option value="0">Burger</option>
+                    <select name="items" id="items" onchange="checkForAddButton()">
+
                     </select>
                 </div>
                 <div>
-                    <input type="number" id="quantity" />
+                    <input onkeyup="checkForAddButton()" type="number" id="quantity" placeholder="e.g. 5" />
                 </div>
                 <div>
-                    <button>Add</button>
+                    <button id="addButton" class="addButton inactive" onclick="addToCart()">Add</button>
                 </div>
             </div>
         </div>
         <!-- input container row endz here!!! -->
+        <!-- Table container row -->
         <div class="row">
             <div class="table-container">
                 <div class="row items-row items-heading">
@@ -45,6 +44,39 @@
                     <div>150</div>
                     <div>1500</div>
                 </div>
+                <div class="row items-row">
+                    <div>Pizza</div>
+                    <div>10</div>
+                    <div>150</div>
+                    <div>1500</div>
+                </div>
+                <div class="row items-row">
+                    <div>Pizza</div>
+                    <div>10</div>
+                    <div>150</div>
+                    <div>1500</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row detail-container">
+            <div class="row total">
+                <div>Total :-</div>
+                <div>100</div>
+            </div>
+            <div class="row state-gst">
+                <div>State GST (2.5%) :-</div>
+                <div>2.5</div>
+
+            </div>
+            <div class="row centre-gst">
+                <div>Centre GST (2.5%) :-</div>
+                <div>2.5</div>
+            </div>
+            <div class="row grand-total">
+                <div>Grand Total :-</div>
+                <div>105</div>
+
             </div>
         </div>
     </div>

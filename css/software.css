@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    transition: all 0.25s ease-out 0s;
+
 }
 .container {
     width: 100%;
@@ -34,6 +36,20 @@
 } 
 .input-container div input,.input-container div select, .input-container div button {
     width: 100%;
+    font-size:11px;
+    padding:5px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    color:#444;
+    outline: none;
+}
+button {
+    background:rgb(73, 91, 255);
+    color:#fff !important;
+    outline: none;
+    border:none;
+    padding:7px !important;
+    text-transform: uppercase;
 }
 .table-container {
     width: 100%;
@@ -42,6 +58,19 @@
     display: flex;
     justify-content: space-between;
     gap:5px;
+    position: relative;
+}
+.items-row::after {
+    content: '';
+    width: 99.3%;
+    height:1px;
+    background:#888;
+    clear:both;
+    position: absolute;
+    bottom:0;
+}
+.items-row:nth-child(1)::after {
+    width: 0%;
 }
 .items-row div {
     flex:1;
@@ -53,3 +82,42 @@
     background:#333;
     color:#e5e5e5;
 }
+.detail-container {
+    width: 30%;
+    padding-right:10%;
+    float:right;
+}
+.detail-container div {
+    display: flex;
+    justify-content: space-between;
+}
+.addButton.inactive{
+    /* display:none; */
+    /* width: 0; */
+    transform: scale(0);
+    border-radius:80%;
+    overflow: hidden;
+    opacity: 0.2;
+    padding:0 !important;
+}
+.addButton.active{
+    /* display:none; */
+    transform: scale(1);
+    /* width: 100%; */
+    border-radius:5px;
+    opacity: 1;
+    animation: bounceIn 0.50s ease-out;
+}
+@keyframes bounceIn{
+    0%{
+        transform: scale(0);
+    }
+    50%{
+        transform: scale(1.3);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+
