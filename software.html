@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software </title>
+    <link rel="stylesheet" href="./css/software.css">
+</head>
+
+<body onload="populateItems()">
+    <div class="container">
+        <div class="row header"></div>
+        <!-- input container starts here!!! -->
+        <div class="row">
+            <div class="input-container">
+                <div>
+                    <select name="items" id="items" onchange="checkForAddButton()">
+
+                    </select>
+                </div>
+                <div>
+                    <input onkeyup="checkForAddButton()" type="number" id="quantity" placeholder="e.g. 5" />
+                </div>
+                <div>
+                    <button id="addButton" class="addButton inactive" onclick="addToCart()">Add</button>
+                </div>
+            </div>
+        </div>
+        <!-- input container row endz here!!! -->
+        <!-- Table container row -->
+        <div class="row">
+            <div class="table-container">
+                <div class="row items-row items-heading">
+                    <div>Item Name</div>
+                    <div>Item Quantity</div>
+                    <div>Price</div>
+                    <div>Row Total</div>
+                </div>
+                <div class="row items-row">
+                    <div>Pizza</div>
+                    <div>10</div>
+                    <div>150</div>
+                    <div>1500</div>
+                </div>
+                <div class="row items-row">
+                    <div>Pizza</div>
+                    <div>10</div>
+                    <div>150</div>
+                    <div>1500</div>
+                </div>
+                <div class="row items-row">
+                    <div>Pizza</div>
+                    <div>10</div>
+                    <div>150</div>
+                    <div>1500</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row detail-container">
+            <div class="row total">
+                <div>Total :-</div>
+                <div>100</div>
+            </div>
+            <div class="row state-gst">
+                <div>State GST (2.5%) :-</div>
+                <div>2.5</div>
+
+            </div>
+            <div class="row centre-gst">
+                <div>Centre GST (2.5%) :-</div>
+                <div>2.5</div>
+            </div>
+            <div class="row grand-total">
+                <div>Grand Total :-</div>
+                <div>105</div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/software.js"></script>
+</body>
+
+</html>
