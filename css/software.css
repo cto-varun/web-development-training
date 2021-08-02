@@ -72,6 +72,9 @@ button {
 .items-row:nth-child(1)::after {
     width: 0%;
 }
+.table-container:nth-child(2) .items-row::after{
+    width: 100%;
+}
 .items-row div {
     flex:1;
     padding:10px;
@@ -119,5 +122,11 @@ button {
         transform: scale(1);
     }
 }
-
+.danger{
+    color:#f00;
+    cursor: pointer;
+}
+#table-row {
+    display: none;
+}
 
