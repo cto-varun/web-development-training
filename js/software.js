@@ -39,6 +39,8 @@ let grandTotalContainer = document.getElementById('grand-total');
 let stateGSTContainer = document.getElementById('state-gst');
 let centreGSTContainer = document.getElementById('centre-gst');
 let tableRowContainer = document.getElementById('table-row');
+let orderTableContainer = document.getElementById('order-table-data');
+let popupContainer = document.getElementById('popup-container');
 
 function checkForAddButton(e, selectBox) {
     if (selectBox) {
@@ -78,7 +80,7 @@ function populateCartItems() {
     let sessionCart = sessionStorage.getItem('cart');
     if (sessionCart !== null) {
         cart = JSON.parse(sessionCart);
-        if (cart?.length !== 0)
+        if (cart.length !== 0)
             generateTable();
     }
 
@@ -142,6 +144,13 @@ function resetAll() {
     itemsContainer.focus();
 }
 
+function resetCart() {
+    cart = [];
+    sessionStorage.removeItem('cart');
+    resetAll();
+    generateTable();
+}
+
 function calculateTotalAmount() {
     totalAmount = 0;
     cart.forEach((item) => {
@@ -160,4 +169,62 @@ function getItemIndexInCart(itemName) {
         return item.itemName === itemName;
     });
     return cartItemIndex;
+}
+
+function saveOrder() {
+    // 1. Check if the cart is having minimum of one item.
+    // 2. Get the cart array and traverse all the objects from the same.
+    // 3. Save all the objects from cart into json-api.
+    if (cart.length > 0) {
+        cart.forEach(async (item) => {
+            // hit the api here
+            await saveToAPI(item);
+        });
+        resetCart();
+    }
+}
+
+async function saveToAPI(item) {
+    try {
+        await fetch("http://localhost:3000/orders", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(item)
+        });
+    } catch (err) {
+        console.error(`Error while inserting Order ${err}`);
+    }
+}
+
+async function fetchOrders() {
+    try {
+        let res = await fetch("http://localhost:3000/orders");
+        res = await res.json();
+        generateOrderTable(res);
+        popupContainer.style.display = "block";
+    } catch (err) {
+        console.error(`Error while fetching Orders ${err}`);
+    }
+}
+function closePopup(){
+    popupContainer.style.display = "none";
+}
+
+function generateOrderTable(orders) {
+    let elem = '';
+    if (orders.length > 0) {
+        orders.forEach((item) => {
+            elem = elem + `<div class="row items-row">`;
+            elem = elem + `<div>${item?.itemName}</div>`;
+            elem = elem + `<div>${item?.quantity}</div>`;
+            elem = elem + `<div>${item?.price}</div>`;
+            elem = elem + `<div>${item?.rowTotal}</div>`;
+            elem = elem + `</div>`;
+        });
+    } else {
+        elem = 'No Orders Found!!';
+    }
+    orderTableContainer.innerHTML = elem;
 }

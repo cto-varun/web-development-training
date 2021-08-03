@@ -10,6 +10,23 @@
 </head>
 
 <body onload="populateItems()">
+    <div class="popup-container" id="popup-container">
+        <div class="row main-order-container">
+            <div class="close" onclick="closePopup()">X</div>
+            <h1 class="my-heading">All Orders</h1>
+            <div class="table-container">
+                <div class="row items-row items-heading">
+                    <div>Item Name</div>
+                    <div>Item Quantity</div>
+                    <div>Price</div>
+                    <div>Row Total</div>
+                </div>
+            </div>
+            <div class="table-container" id="order-table-data">
+
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row header"></div>
         <!-- input container starts here!!! -->
@@ -41,7 +58,7 @@
                 </div>
             </div>
             <div class="table-container" id="table-data">
-                
+
             </div>
             <div class="row detail-container">
                 <div class="row total">
@@ -51,7 +68,7 @@
                 <div class="row state-gst">
                     <div>State GST (2.5%) :-</div>
                     <div id="state-gst"></div>
-    
+
                 </div>
                 <div class="row centre-gst">
                     <div>Centre GST (2.5%) :-</div>
@@ -60,22 +77,23 @@
                 <div class="row grand-total">
                     <div>Grand Total :-</div>
                     <div id="grand-total"></div>
-    
+
                 </div>
             </div>
-        <!-- Order now Container -->
-        <!-- <div class="row">
-            <button
-                class=" addButton active"
-            >
-                Order Now
+            <!-- Order now Container -->
+            <div class="row">
+                <button class=" addButton active" onclick="saveOrder()">
+                    Order Now
 
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <button class=" addButton active" onclick="fetchOrders()">
+                Fetch Orders
             </button>
-        </div> -->
-    </div>
+        </div>
 
-
-       
     </div>
 
     <script src="./js/software.js"></script>
