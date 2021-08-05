@@ -1,0 +1,68 @@
+*{
+    transition: all 0.25s ease-out 0s;
+}
+body{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.container { 
+    width :100%;
+    height:100%;
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+.home {
+    background-image: url('../imgs/home.jpeg');
+    top:0;
+    background-attachment: fixed;
+}
+.about {
+    background-image: url('../imgs/about.jpeg');
+    background-attachment: fixed;
+    top:100%;
+}
+.contact {
+    background-image: url('../imgs/contact.jpeg');
+    top:200%;
+    background-attachment: fixed;
+}
+.gallery {
+    background-image: url('../imgs/gallery.jpeg');
+    background-attachment: fixed;
+    top:300%;
+}
+.services {
+    background-image: url('../imgs/services.png');
+    top:400%;
+    background-attachment: fixed;
+}
+.container div {
+    width:100%;
+    height: 100%;
+    background-repeat: none;
+    background-size:cover;
+    position:absolute;
+    background-position:top left;
+    box-shadow:0px 1px 10px #fff;
+}
+.container div h1 {
+    height:0;
+    width: 0%;
+    margin:auto;
+    margin-top:20%;
+    background: rgba(255,255,255,0.7);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:#333;
+    padding:3rem 0;
+    text-transform: uppercase;
+        overflow: hidden;
+}
+.container div h1.visible {
+    height:auto;
+    width: 100% !important;
+}
