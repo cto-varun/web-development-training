@@ -1,0 +1,186 @@
+* {
+    transition: all 0.25s ease-out 0s;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-space-between {
+    justify-content: space-between;
+}
+
+.justify-content-space-around {
+    justify-content: space-around;
+}
+
+.justify-content-flex-start {
+    justify-content: flex-start;
+}
+
+.justify-content-flex-end {
+    justify-content: flex-end;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.align-items-flex-start {
+    align-items: flex-start;
+}
+
+.align-items-flex-end {
+    align-items: flex-end;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
+.m-1 {
+    margin: 1rem;
+}
+
+.m-2 {
+    margin: 2rem;
+}
+
+.p-1 {
+    padding: 1rem;
+}
+
+.p-2 {
+    padding: 2rem;
+}
+
+.gap-1 {
+    gap: 1rem;
+}
+
+.box-shadow-down {
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+header {
+    clear: both;
+    height: auto;
+}
+
+.row {
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    clear: both;
+    position: relative;
+}
+
+.top-bar-container {
+    padding: 0;
+    height: 30px;
+    overflow: hidden;
+}
+
+.social-media-icons-container {
+    width: 14%;
+    height: 78%;
+    padding: 5px;
+}
+
+.button-top-bar {
+    width: 14%;
+    height: 100%;
+}
+
+.facebook {
+    background: url('../imgs/icons/facebook.png') no-repeat center center;
+}
+
+.instagram {
+    background: url('../imgs/icons/instagram.png') no-repeat center center;
+}
+
+.twitter {
+    background: url('../imgs/icons/twitter.png') no-repeat center center;
+}
+
+.social-media-icons-container div {
+    flex: 1;
+    height: 100%;
+    background-size: contain;
+}
+
+.button-primary {
+    flex: 1;
+    background: #333;
+    padding: 0.5rem;
+    color: #e5e5e5;
+}
+
+.header-row-2>div {
+    height: 100px;
+}
+
+.logo {
+    flex: 1;
+    background: url('../imgs/logo.png') no-repeat center center;
+    background-size: cover;
+}
+
+.menu {
+    flex: 8;
+}
+
+.menu>div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.menu>div:hover {
+    background: #222;
+    color: #eee;
+    transform: scale(1.1);
+}
+
+.search {
+    flex: 1;
+}
+
+.search input {
+    margin-right: 1rem;
+    border: none;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+    padding: 0.3rem;
+    outline: none;
+}
