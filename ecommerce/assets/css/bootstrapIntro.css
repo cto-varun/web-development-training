@@ -1,0 +1,30 @@
+.red {
+    background: #a00;
+    color: #fff;
+}
+
+.green {
+    background: #050;
+    color: #fff;
+}
+
+.dark-grey {
+    background: #222;
+    color: #fff;
+}
+
+.dark-grey div {
+    font-size: 13px;
+}
+
+.dark-grey .top-bar-icon {
+    font-size: 1.3rem;
+    position: relative;
+}
+
+.dark-grey .top-bar-icon span {
+    position: absolute;
+    font-size: 1rem;
+    right: -35%;
+    top: -60%;
+}
