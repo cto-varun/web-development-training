@@ -28,3 +28,14 @@
     right: -35%;
     top: -60%;
 }
+
+#search-bar {
+    overflow: hidden;
+    display: none;
+}
+
+.nav-bar-props {
+    background: #fff !important;
+    width: 100% !important;
+    box-shadow: 0px 1px 10px #888;
+}
