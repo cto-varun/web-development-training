@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/gallery.css">
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="row gy-4 py-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 images-container">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img src="./imgs/nature.jpeg" alt="Showing Nature's default" class="img-container">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img src="./imgs/contact.jpeg" alt="Contact Us" class="img-container">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img src="./imgs/gallery.jpeg" alt="Gallery Glimpse" class="img-container">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img src="./imgs/home.jpeg" alt="Home Page View" class="img-container">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img src="./imgs/nature.jpeg" alt="Showing Nature's default" class="img-container">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img src="./imgs/contact.jpeg" alt="Contact Us" class="img-container">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img src="./imgs/food-court-bg.jpeg" alt="Food Court" class="img-container">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img src="./imgs/nature.jpeg" alt="Showing Nature's default" class="img-container">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img src="./imgs/contact.jpeg" alt="Contact Us" class="img-container">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img src="./imgs/gallery.jpeg" alt="Gallery Glimpse" class="img-container">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img src="./imgs/home.jpeg" alt="Home Page View" class="img-container">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <img src="./imgs/food-court-bg.jpeg" alt="Food Court" class="img-container">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="galleryModalLabel">Image Name</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-center align-items-center">
+                    <img src="./imgs/contact.jpeg" id="modal-image-container" alt="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/gallery.js"></script>
+</body>
+
+</html>
