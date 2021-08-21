@@ -1,3 +1,7 @@
+.transition {
+    transition: all 0.25s ease-out 0s;
+}
+
 .red {
     background: #a00;
     color: #fff;
@@ -38,4 +42,114 @@
     background: #fff !important;
     width: 100% !important;
     box-shadow: 0px 1px 10px #888;
+}
+
+.my-navbar {
+    width: 90%;
+}
+
+.box-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.box-image {
+    transition: all 0.25s ease-out 0s;
+}
+
+.box-image-container:hover>img {
+    transform: scale(1.1);
+}
+
+.card-content {
+    position: absolute;
+    right: 1%;
+    top: 0;
+    width: 50%;
+    padding: 2rem;
+}
+
+.card-content-right-side {
+    position: absolute;
+    left: 1%;
+    bottom: 0;
+    width: 50%;
+    padding: 2rem;
+}
+
+.text-justify-center {
+    text-align: justify;
+    color: #6B6B6B;
+    font-family: "Raleway", "sans-serif";
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+.card-content-right-side * {
+    text-align: justify;
+    padding: 1rem;
+    color: #fff !important;
+    font-family: "Raleway", "sans-serif";
+    /* font-size: 15px; */
+    font-weight: 400;
+    line-height: 30px;
+}
+
+.left-card-container {
+    gap: 1rem;
+}
+
+.shop-collection {
+    transition: all 0.25s ease-out 0s;
+}
+
+.shop-collection:hover {
+    cursor: pointer;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff !important;
+}
+
+.category-bar {
+    background: var(--bs-gray-dark);
+    color: var(--bs-white);
+}
+
+.product-container {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, .125);
+}
+
+.product-container img {
+    width: 100%;
+}
+
+.icons-container {
+    position: absolute;
+    right: -50%;
+    top: 10%;
+}
+
+.icons-container i {
+    color: #fff;
+    font-size: 1.5vw;
+}
+
+.product-container:hover .icons-container {
+    right: 0%;
+    cursor: pointer;
+}
+
+.product-container:hover .overlay {
+    opacity: 1;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    position: absolute;
+    opacity: 0;
 }
