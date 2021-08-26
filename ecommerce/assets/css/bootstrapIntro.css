@@ -2,6 +2,26 @@ body {
     color: rgba(0, 0, 0, 0.6);
 }
 
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fff !important;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+a:active {
+    color: #fff;
+    text-decoration: none;
+}
+
 .transition {
     transition: all 0.25s ease-out 0s;
 }

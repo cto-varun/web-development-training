@@ -1,0 +1,16 @@
+[{
+        "image": "./assets/imgs/products/top-one.jpeg",
+        "name": "Canary yellow seahorse blazer",
+        "price": "18000"
+    },
+    {
+        "image": "./assets/imgs/products/top-two.jpeg",
+        "name": "Canary yellow seahorse blazer",
+        "price": "15000"
+    },
+    {
+        "image": "./assets/imgs/products/top-three.jpeg",
+        "name": "Canary yellow seahorse blazer",
+        "price": "18000"
+    }
+]

@@ -7,17 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Detail</title>
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="./assets/css/bootstrapIntro.css" />
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body onload="loadProductDetails()">
     <div class="container-fluid">
         <div class="row dark-grey">
             <div class="container">
@@ -89,8 +86,7 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Brand Journey
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -98,8 +94,7 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Run Way
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -107,8 +102,7 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Shop
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -138,12 +132,12 @@
                         <!-- image container -->
                         <div class="col-4">
                             <div class="col image-container">
-                                <img src="./assets/imgs/products/top-four.jpeg" alt="">
+                                <img src="./assets/imgs/products/top-four.jpeg" alt="" class="product-image">
                             </div>
                             <div class="col image-container">
                                 <div class="row pt-2">
-                                    <img src="./assets/imgs/products/top-four.jpeg" alt="">
-                                    <img src="./assets/imgs/products/top-four.jpeg" alt="">
+                                    <img src="./assets/imgs/products/top-four.jpeg" alt="" class="product-image">
+                                    <img src="./assets/imgs/products/top-four.jpeg" alt="" class="product-image">
                                 </div>
                             </div>
                         </div>
@@ -151,14 +145,12 @@
                         <div class="col-8">
                             <div class="row">
                                 <div class="col p-3">
-                                    The starburst blazer <strong>₹ 21000</strong>
+                                    <span id="product-name"> The starburst blazer </span><strong id="product-price">₹ 0</strong>
                                 </div>
                                 <hr />
                                 <div class="col-12">
-                                    <p>
-                                        Sagrada familia high density rubber printed double breasted jacket. the print is
-                                        adorned with hand crafted 3-d flowers
-                                        which have been painstakingly folded and twisted to form ridge like formations.
+                                    <p id="product-description">
+                                        Sagrada familia high density rubber printed double breasted jacket. the print is adorned with hand crafted 3-d flowers which have been painstakingly folded and twisted to form ridge like formations.
                                     </p>
                                 </div>
                                 <hr />
@@ -166,8 +158,7 @@
                                     <strong>Size</strong>
                                 </div>
                                 <div class="col-12 pb-3">
-                                    <div
-                                        class="row size-box-container d-flex justify-content-start ps-3 pt-2 align-items-center">
+                                    <div class="row size-box-container d-flex justify-content-start ps-3 pt-2 align-items-center">
                                         <div class="boxes">XS</div>
                                         <div class="boxes">S</div>
                                         <div class="boxes">M</div>
@@ -204,15 +195,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.carousel').carousel();
-            $("#search-icon").click(function () {
-                $("#search-bar").css('display', 'block');
-                $(this).css('display', 'none');
-            });
-        });
-    </script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
