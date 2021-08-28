@@ -158,23 +158,19 @@
                                     <strong>Size</strong>
                                 </div>
                                 <div class="col-12 pb-3">
-                                    <div class="row size-box-container d-flex justify-content-start ps-3 pt-2 align-items-center">
-                                        <div class="boxes">XS</div>
-                                        <div class="boxes">S</div>
-                                        <div class="boxes">M</div>
-                                        <div class="boxes">L</div>
-                                        <div class="boxes">XL</div>
+                                    <div class="row size-box-container d-flex justify-content-start ps-3 pt-2 align-items-center" id="size-boxes-container">
+                                       
                                     </div>
                                 </div>
                                 <hr />
                                 <div class="row quantity-container ps-4">
-                                    <input type="number" placeholder="0" />
-                                    <button>ADD TO CART</button>
+                                    <input type="number" placeholder="0" id="quantity" />
+                                    <button onclick="addToCart()">ADD TO CART</button>
                                 </div>
                                 <div class="row pt-3 pb-3">
                                     <div class="col-12 wishlist-icon-container">
                                         <i class="fas fa-heart fs-5 "></i>
-                                        <span>Add to wishlist</span>
+                                        <span onclick="getCart()">Add to wishlist</span>
                                     </div>
                                 </div>
                                 <hr />

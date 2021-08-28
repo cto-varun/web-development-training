@@ -1,3 +1,6 @@
+*{
+    transition: all 0.25s ease-out 0s;
+}
 body {
     color: rgba(0, 0, 0, 0.6);
 }
@@ -193,6 +196,7 @@ a:active {
 
 .product-detail-container .size-box-container {
     gap: 0.5rem;
+    cursor: pointer;
 }
 
 .product-detail-container .size-box-container div {
@@ -202,6 +206,10 @@ a:active {
     justify-content: center;
     align-items: center;
     padding: 0.5rem;
+}
+
+.product-detail-container .size-box-container div.highlight {
+    box-shadow:0px 0px 5px #888;
 }
 
 .product-detail-container .quantity-container>* {
