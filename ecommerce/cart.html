@@ -17,7 +17,7 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body onload="populateCart()">
     <div class="container-fluid">
         <div class="row dark-grey">
             <div class="container">
@@ -45,8 +45,9 @@
                                                 </i>
                                             </div>
                                             <div class="col-2">
-                                                <i class="fas fa-shopping-bag top-bar-icon">
-                                                    <span>0</span>
+                                                <i class="fas fa-shopping-bag top-bar-icon"
+                                                    onclick="window.location='./cart.html'" style="cursor: pointer;">
+                                                    <span id="cart-item-total">0</span>
                                                 </i>
                                             </div>
                                             <div class="col-1">IND</div>
@@ -132,7 +133,20 @@
 
         <!-- products container -->
         <div class="container">
-            <div class="row">
+            <div class="row pt-5">
+                <div class="col-6">
+                    Product Name
+                </div>
+                <div class="col-6 pb-3">
+                    <div class="row justify-content-start align-items-center">
+                        <div class="col-4 text-center">Price</div>
+                        <div class="col-4 text-center">Quantity</div>
+                        <div class="col-4 text-center">SubTotal</div>
+                    </div>
+                </div>
+                <hr />
+            </div>
+            <div class="row" id="cart-details">
 
             </div>
         </div>
@@ -147,7 +161,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

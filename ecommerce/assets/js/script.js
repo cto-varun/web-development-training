@@ -114,7 +114,7 @@ function addToCart() {
     // 2. qunatity selected by user.
     const quantity = document.getElementById('quantity').value;
     // 3. selected size by the user.
-    
+
     // 4. create an object of all these details and add them to cart array. 
     if (quantity > 0 && selectedSize != "") {
         const productDetail = {
@@ -125,17 +125,25 @@ function addToCart() {
             quantity,
             selectedSize
         };
-        localStorage.setItem("cart", JSON.stringify(productDetail));
+        let cart = [];
+        let previousCart = getCartItems();
+        if (previousCart.length > 0) {
+            let productIndex = getProductIndexFromCart(previousCart, productName);
+            if (productIndex == -1)
+                cart = [...previousCart, productDetail];
+            else
+                cart = [...previousCart];
+        } else {
+            cart = [productDetail];
+        }
+        setCartToLocalStorage(cart);
+        window.location = './cart.html';
     } else {
         alert("Please select size and quantity");
     }
 }
 
-function getCart() {
-    let cart = localStorage.getItem('cart');
-    cart = JSON.parse(cart);
-    // console.log(cart.productName);
-}
+
 function generateProducts() {
     let productsContainer = document.getElementById("products-container");
     let elem = '';
@@ -183,6 +191,7 @@ function getProductDetailsFromSessionStorage() {
 
 function loadProductDetails() {
     generateSizeListBoxes();
+    getTotalCartItemNumber();
     const { productName, productImage, productPrice, productDescription } = getProductDetailsFromSessionStorage();
     if (productName && productPrice && productImage && productDescription) {
         let productNameContainer = document.getElementById("product-name");
@@ -199,4 +208,84 @@ function loadProductDetails() {
         window.location = "./products.html";
     }
 
+}
+function getTotalCartItemNumber() {
+    let cart = localStorage.getItem('cart');
+    if (cart) {
+        cart = JSON.parse(cart);
+        document.getElementById("cart-item-total").innerHTML = cart.length;
+    }
+}
+function populateCart() {
+    getTotalCartItemNumber();
+    let cart = getCartItems();
+    let cartDetailContainer = document.getElementById("cart-details");
+
+    if (cart.length > 0) {
+        let elem = '';
+        for (const product of cart) {
+            elem += `<div class="row pt-1 pb-1">`;
+            elem += `<div class="col-6">`;
+            elem += `<div class="row align-items-center">`;
+            elem += `<div class="col-1" style="cursor:pointer;color:#F00" onclick="deleteItemFromCart('${product.productName}')">X</div>`;
+            elem += `<div class="col-2">`;
+            elem += `<img src="${product.productImage}"  width="50%" />`;
+            elem += `</div>`;
+            elem += `<div class="col-9 text-left">`;
+            elem += `${product.productName}`;
+            elem += `</div>`;
+            elem += `</div>`;
+            elem += `</div>`;
+            elem += `<div class="col-6 pb-3">`;
+            elem += `<div class="row justify-content-start align-items-center">`;
+            elem += `<div class="col-4 text-center">₹ ${product.productPrice}</div>`;
+            elem += `<div class="col-4 d-flex justify-content-center align-items-center">`;
+            elem += `<input type="number" onkeyup="updateQuantity(this,'${product.productName}', '${product.quantity}','${product.productPrice}')" onchange="updateQuantity(this,'${product.productName}', '${product.quantity}','${product.productPrice}')" value="${product.quantity}" class="cart-quantity-box"/>`;
+            elem += `</div>`;
+            elem += `<div class="col-4 text-center">₹ ${+product.productPrice * +product.quantity}</div>`;
+            elem += `</div>`;
+            elem += `</div>`;
+            elem += `</div>`;
+            elem += `<hr />`;
+        }
+        cartDetailContainer.innerHTML = elem;
+    } else {
+        window.location = './products.html';
+    }
+}
+
+function getCartItems() {
+    let cart = localStorage.getItem('cart');
+    if (cart)
+        return JSON.parse(cart);
+    return [];
+}
+function getProductIndexFromCart(cart, productName) {
+    return cart.findIndex((ct) => {
+        return ct.productName === productName;
+    });
+
+}
+function updateQuantity(box, productName, quantity, productPrice) {
+    if (box.value !== '' && box.value !== quantity) {
+        let cart = getCartItems();
+        if (cart.length > 0) {
+            let productIndex = getProductIndexFromCart(cart, productName);
+            cart[productIndex].quantity = box.value;
+            setCartToLocalStorage(cart);
+            populateCart();
+        }
+    }
+}
+function setCartToLocalStorage(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function deleteItemFromCart(productName) {
+    // 1. Find the position of the product in localStorage cart.
+    let cart = getCartItems();
+    let productIndex = getProductIndexFromCart(cart, productName);
+    cart.splice(productIndex, 1);
+    setCartToLocalStorage(cart);
+    populateCart();
 }
