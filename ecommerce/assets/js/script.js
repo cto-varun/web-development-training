@@ -92,12 +92,83 @@ const products = [{
 const sizeList = ['XS', 'S', 'M', 'L', 'XL'];
 let selectedSize = '';
 
+const menus = [
+    {
+        menuName: 'Home',
+        link: './'
+    },
+    {
+        menuName: 'About',
+        link: './about'
+    },
+    {
+        menuName: 'Contact',
+        link: './'
+    },
+    {
+        menuName: 'Services',
+        link: './'
+    },
+    {
+        menuName: 'Shop',
+        dropDown: true,
+        subMenuItems: [
+            {
+                menuName: 'Products',
+                link: './products.html'
+            },
+            {
+                menuName: 'Showcase',
+                link: './'
+            },
+            {
+                menuName: 'Reset.Restart',
+                link: './products.html'
+            }
+        ]
+    }
+];
 
+
+
+
+function generateSubmenu(subMenuItems) {
+    var elem = '';
+    for (const menuItem of subMenuItems) {
+        elem += `<li><a class="dropdown-item" href="${menuItem.link}">${menuItem.menuName}</a></li>`;
+    }
+    return elem;
+
+}
+
+function generateMenus() {
+    let menuContainer = document.getElementById('menu-container');
+    var elem = '';
+    let i = 0;
+    for (const menu of menus) {
+        if (menu.dropDown) {
+            elem += `<li class="nav-item dropdown">`;
+            elem += `<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">`;
+            elem += menu.menuName;
+            elem += `</a>`;
+            elem += `<ul class="dropdown-menu" aria-labelledby="navbarDropdown">`;
+            elem += generateSubmenu(menu.subMenuItems);
+            elem += `</ul>`;
+            elem += `</li>`;
+        } else {
+            elem += `<li class="nav-item ${i === 0 ? ' active' : ''}">`;
+            elem += `<a class="nav-link" href="${menu.link}">${menu.menuName} <span class="sr-only">(current)</span></a>`;
+            elem += `</li>`;
+        }
+        i++;
+    }
+    menuContainer.innerHTML = elem;
+}
 function generateSizeListBoxes(sizeName) {
     let sizeBoxesContainer = document.getElementById('size-boxes-container');
     let elem = '';
     for (const size of sizeList) {
-        elem += `<div class="boxes ${sizeName && sizeName == size ? ' highlight' : ''}" onclick="toggleSizeClass(this)">${size}</div>`;
+        elem += `<div class="boxes ${sizeName && sizeName == size ? ' highlight' : ''}" onclick = "toggleSizeClass(this)"> ${size}</div> `;
     }
     sizeBoxesContainer.innerHTML = elem;
 }
@@ -145,34 +216,79 @@ function addToCart() {
 
 
 function generateProducts() {
+    getTotalCartItemNumber();
     let productsContainer = document.getElementById("products-container");
     let elem = '';
     products.forEach((product, index) => {
         const { image, name, price, description } = product;
-        elem += `<div class="col col-md-4 col-xl-3" id="product-${index}" onclick="saveToCache('${name}','${price}','${image}','${description}')">`;
-        elem += `<div class="col product-container">`;
-        elem += `<div class="overlay transition"></div>`;
-        elem += `<div class="icons-container d-flex flex-column transition">`;
-        elem += `<i class="far fa-eye eyeIcon p-3"></i>`;
-        elem += `<i class="fas fa-heart heartIcon p-3"></i>`;
-        elem += `</div>`;
-        elem += `<img src="${image}" alt="">`;
-        elem += `<div class="col text-content d-flex flex-column align-items-center pt-2">`;
-        elem += `<p>${name}</p>`;
-        elem += `<p>₹ ${price}</p>`;
-        elem += `</div>`;
-        elem += `</div>`;
-        elem += `</div>`;
+        elem += `<div class="col col-md-4 col-xl-3" id = "product-${index}"> `;
+        elem += `<div class="col product-container"> `;
+        elem += `<div class="overlay transition"></div> `;
+        elem += `<div class="icons-container d-flex flex-column transition"> `;
+        elem += `<i i class="far fa-eye eyeIcon p-3" onclick = "saveProduct('${name}','${price}','${image}','${description}')"></i> `;
+        elem += `<i i class="fas fa-heart heartIcon p-3 ${(isInWishList(name) != -1) ? 'like-btn-active' : ''}"  onclick = "addToWishList('${name}','${price}','${image}','${description}')"></i> `;
+        elem += `</div> `;
+        elem += `<img src = "${image}" alt = ""> `;
+        elem += `<div class="col text-content d-flex flex-column align-items-center pt-2"> `;
+        elem += `<p> ${name}</p> `;
+        elem += `<p>₹ ${price}</p> `;
+        elem += `</div> `;
+        elem += `</div> `;
+        elem += `</div> `;
     });
     productsContainer.innerHTML = elem;
 }
+
+
+// Wishlist functions
+function isInWishList(name) {
+    let wishList = getWishListItems();
+    return getProductIndexFromWishList(wishList, name);
+}
+function addToWishList(name, price, image, description) {
+    let productIndex = isInWishList(name);
+    let wishList = getWishListItems();
+
+    const productDetail = {
+        productName: name,
+        productImage: image,
+        productPrice: price,
+        productDescription: description
+    };
+    if (productIndex == -1) {
+        wishList = [...wishList, productDetail];
+    } else {
+        wishList.splice(productIndex, 1);
+    }
+    localStorage.setItem('wishList', JSON.stringify(wishList));
+    generateProducts();
+}
+function setWishListToLocalStorage(wishList) {
+    localStorage.setItem('wishList', JSON.stringify(wishList));
+}
+function getProductIndexFromWishList(wishList, productName) {
+    return wishList.findIndex((wl) => {
+        return wl.productName === productName;
+    });
+
+}
+function getWishListItems() {
+    let wishList = localStorage.getItem('wishList');
+    if (wishList)
+        return JSON.parse(wishList);
+    return [];
+}
+// Wishlist functions endzz here 
+
+
+
 function setProductDetailsInSessionStorage(name, price, image, description) {
     localStorage.setItem('productName', name);
     localStorage.setItem('productPrice', price);
     localStorage.setItem('productImage', image);
     localStorage.setItem('productDescription', description);
 }
-function saveToCache(name, price, image, description) {
+function saveProduct(name, price, image, description) {
     setProductDetailsInSessionStorage(name, price, image, description);
     window.location = "./productDetails.html";
 }
@@ -210,6 +326,7 @@ function loadProductDetails() {
 
 }
 function getTotalCartItemNumber() {
+    generateMenus();
     let cart = localStorage.getItem('cart');
     if (cart) {
         cart = JSON.parse(cart);
@@ -220,34 +337,40 @@ function populateCart() {
     getTotalCartItemNumber();
     let cart = getCartItems();
     let cartDetailContainer = document.getElementById("cart-details");
-
+    let totalAmountContainer = document.getElementById("total-amount");
+    let subTotalAmountContainer = document.getElementById("subtotal-amount");
+    let total = 0;
     if (cart.length > 0) {
         let elem = '';
         for (const product of cart) {
-            elem += `<div class="row pt-1 pb-1">`;
-            elem += `<div class="col-6">`;
-            elem += `<div class="row align-items-center">`;
-            elem += `<div class="col-1" style="cursor:pointer;color:#F00" onclick="deleteItemFromCart('${product.productName}')">X</div>`;
-            elem += `<div class="col-2">`;
-            elem += `<img src="${product.productImage}"  width="50%" />`;
-            elem += `</div>`;
-            elem += `<div class="col-9 text-left">`;
-            elem += `${product.productName}`;
-            elem += `</div>`;
-            elem += `</div>`;
-            elem += `</div>`;
-            elem += `<div class="col-6 pb-3">`;
-            elem += `<div class="row justify-content-start align-items-center">`;
-            elem += `<div class="col-4 text-center">₹ ${product.productPrice}</div>`;
-            elem += `<div class="col-4 d-flex justify-content-center align-items-center">`;
-            elem += `<input type="number" onkeyup="updateQuantity(this,'${product.productName}', '${product.quantity}','${product.productPrice}')" onchange="updateQuantity(this,'${product.productName}', '${product.quantity}','${product.productPrice}')" value="${product.quantity}" class="cart-quantity-box"/>`;
-            elem += `</div>`;
-            elem += `<div class="col-4 text-center">₹ ${+product.productPrice * +product.quantity}</div>`;
-            elem += `</div>`;
-            elem += `</div>`;
-            elem += `</div>`;
-            elem += `<hr />`;
+            let subTotal = +product.productPrice * +product.quantity;
+            total = total + subTotal;
+            elem += `<div class="row pt-1 pb-1"> `;
+            elem += `<div class="col-6"> `;
+            elem += `<div class="row align-items-center"> `;
+            elem += `<div class="col-1" style = "cursor:pointer;color:#F00" onclick = "deleteItemFromCart('${product.productName}')"> X</div> `;
+            elem += `<div class="col-2"> `;
+            elem += `<img src = "${product.productImage}"  width = "50%" /> `;
+            elem += `</div> `;
+            elem += `<div class="col-9 text-left"> `;
+            elem += `${product.productName} `;
+            elem += `</div> `;
+            elem += `</div> `;
+            elem += `</div> `;
+            elem += `<div class="col-6 pb-3"> `;
+            elem += `<div class="row justify-content-start align-items-center"> `;
+            elem += `<div class="col-4 text-center">₹ ${product.productPrice}</div> `;
+            elem += `<div class="col-4 d-flex justify-content-center align-items-center"> `;
+            elem += `<input type = "number" onkeyup = "updateQuantity(this,'${product.productName}', '${product.quantity}','${product.productPrice}')" onchange = "updateQuantity(this,'${product.productName}', '${product.quantity}')" value = "${product.quantity}" class="cart-quantity-box" /> `;
+            elem += `</div> `;
+            elem += `<div class="col-4 text-center">₹ ${subTotal}</div> `;
+            elem += `</div> `;
+            elem += `</div> `;
+            elem += `</div> `;
+            elem += `<hr /> `;
         }
+        subTotalAmountContainer.innerHTML = total;
+        totalAmountContainer.innerHTML = total;
         cartDetailContainer.innerHTML = elem;
     } else {
         window.location = './products.html';
@@ -266,7 +389,7 @@ function getProductIndexFromCart(cart, productName) {
     });
 
 }
-function updateQuantity(box, productName, quantity, productPrice) {
+function updateQuantity(box, productName, quantity) {
     if (box.value !== '' && box.value !== quantity) {
         let cart = getCartItems();
         if (cart.length > 0) {
