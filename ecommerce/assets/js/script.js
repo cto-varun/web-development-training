@@ -335,6 +335,7 @@ function checkWishList(name) {
     } else {
         wishListIcon.innerHTML = `<i class="fas fa-heart fs-5" onclick="addToWishList('${productName}','${productPrice}','${productImage}','${productDescription}')"></i>`;
     }
+    
 }
 function getTotalCartItemNumber() {
     generateMenus();
