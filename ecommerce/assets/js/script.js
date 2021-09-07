@@ -91,6 +91,7 @@ const products = [{
 ];
 const sizeList = ['XS', 'S', 'M', 'L', 'XL'];
 let selectedSize = '';
+// let currentSelection = null;
 
 const menus = [
     {
@@ -320,10 +321,20 @@ function loadProductDetails() {
         for (const productImageContainer of productImageContainers) {
             productImageContainer.src = productImage;
         }
+        checkWishList(productName);
     } else {
         window.location = "./products.html";
     }
+}
 
+function checkWishList(name) {
+    let wishListIcon = document.getElementById('icon-container-heart');
+    const { productName, productImage, productPrice, productDescription } = getProductDetailsFromSessionStorage();
+    if (isInWishList(name) != -1) {
+        wishListIcon.innerHTML = `<i class="fas fa-heart fs-5" onclick="addToWishList('${productName}','${productPrice}','${productImage}','${productDescription}')" style="color:#f00"></i>`;
+    } else {
+        wishListIcon.innerHTML = `<i class="fas fa-heart fs-5" onclick="addToWishList('${productName}','${productPrice}','${productImage}','${productDescription}')"></i>`;
+    }
 }
 function getTotalCartItemNumber() {
     generateMenus();
@@ -361,7 +372,7 @@ function populateCart() {
             elem += `<div class="row justify-content-start align-items-center"> `;
             elem += `<div class="col-4 text-center">₹ ${product.productPrice}</div> `;
             elem += `<div class="col-4 d-flex justify-content-center align-items-center"> `;
-            elem += `<input type = "number" onkeyup = "updateQuantity(this,'${product.productName}', '${product.quantity}','${product.productPrice}')" onchange = "updateQuantity(this,'${product.productName}', '${product.quantity}')" value = "${product.quantity}" class="cart-quantity-box" /> `;
+            elem += `<input type="number" id="${product.productName}" onkeydown="updateQuantity(event,this,'${product.productName}', '${product.quantity}','${product.productPrice}')" value="${product.quantity}" class="cart-quantity-box" /> `;
             elem += `</div> `;
             elem += `<div class="col-4 text-center">₹ ${subTotal}</div> `;
             elem += `</div> `;
@@ -372,6 +383,8 @@ function populateCart() {
         subTotalAmountContainer.innerHTML = total;
         totalAmountContainer.innerHTML = total;
         cartDetailContainer.innerHTML = elem;
+        // if (currentSelection)
+        //     document.getElementById(currentSelection).focus();
     } else {
         window.location = './products.html';
     }
@@ -389,14 +402,17 @@ function getProductIndexFromCart(cart, productName) {
     });
 
 }
-function updateQuantity(box, productName, quantity) {
-    if (box.value !== '' && box.value !== quantity) {
-        let cart = getCartItems();
-        if (cart.length > 0) {
-            let productIndex = getProductIndexFromCart(cart, productName);
-            cart[productIndex].quantity = box.value;
-            setCartToLocalStorage(cart);
-            populateCart();
+function updateQuantity(event, box, productName, quantity) {
+    if (event.keyCode == 13) {
+        if (box.value !== '' && box.value !== quantity) {
+            let cart = getCartItems();
+            if (cart.length > 0) {
+                let productIndex = getProductIndexFromCart(cart, productName);
+                cart[productIndex].quantity = box.value;
+                setCartToLocalStorage(cart);
+                // currentSelection = box.id;
+                populateCart();
+            }
         }
     }
 }
