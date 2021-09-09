@@ -1,100 +1,96 @@
 const products = [{
-    "image": "./assets/imgs/products/top-one.jpeg",
-    "name": "Canary yellow seahorse blazer",
-    "price": "18000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-two.jpeg",
-    "name": "Starburst kilt trouser",
-    "price": "15000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-three.jpeg",
-    "name": "The starburst metallic hoodie dress",
-    "price": "28000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-one.jpeg",
-    "name": "Canary yellow seahorse blazer",
-    "price": "18000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-two.jpeg",
-    "name": "Starburst kilt trouser",
-    "price": "15000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-three.jpeg",
-    "name": "The starburst metallic hoodie dress",
-    "price": "28000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-one.jpeg",
-    "name": "Canary yellow seahorse blazer",
-    "price": "18000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-two.jpeg",
-    "name": "Starburst kilt trouser",
-    "price": "15000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-three.jpeg",
-    "name": "The starburst metallic hoodie dress",
-    "price": "28000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-one.jpeg",
-    "name": "Canary yellow seahorse blazer",
-    "price": "18000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-two.jpeg",
-    "name": "Starburst kilt trouser",
-    "price": "15000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-three.jpeg",
-    "name": "The starburst metallic hoodie dress",
-    "price": "28000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-one.jpeg",
-    "name": "Canary yellow seahorse blazer",
-    "price": "18000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-two.jpeg",
-    "name": "Starburst kilt trouser",
-    "price": "15000",
-    "description": "Here goes the description of the product."
-},
-{
-    "image": "./assets/imgs/products/top-three.jpeg",
-    "name": "The starburst metallic hoodie dress",
-    "price": "28000",
-    "description": "Here goes the description of the product."
-}
-];
-const sizeList = ['XS', 'S', 'M', 'L', 'XL'];
-let selectedSize = '';
-// let currentSelection = null;
-
-const menus = [
+        "image": "./assets/imgs/products/top-one.jpeg",
+        "name": "Canary yellow seahorse blazer",
+        "price": "18000",
+        "description": "Here goes the description of the product."
+    },
     {
+        "image": "./assets/imgs/products/top-two.jpeg",
+        "name": "Starburst kilt trouser",
+        "price": "15000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-three.jpeg",
+        "name": "The starburst metallic hoodie dress",
+        "price": "28000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-one.jpeg",
+        "name": "Canary yellow seahorse blazer",
+        "price": "18000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-two.jpeg",
+        "name": "Starburst kilt trouser",
+        "price": "15000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-three.jpeg",
+        "name": "The starburst",
+        "price": "28000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-one.jpeg",
+        "name": "Canary yellow seahorse blazer",
+        "price": "18000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-two.jpeg",
+        "name": "Starburst kilt trouser",
+        "price": "15000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-three.jpeg",
+        "name": "The starburst metallic hoodie dress",
+        "price": "28000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-one.jpeg",
+        "name": "Canary yellow seahorse blazer",
+        "price": "18000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-two.jpeg",
+        "name": "Starburst kilt trouser",
+        "price": "15000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-three.jpeg",
+        "name": "The starburst metallic hoodie dress",
+        "price": "28000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-one.jpeg",
+        "name": "Canary yellow seahorse blazer",
+        "price": "18000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-two.jpeg",
+        "name": "Starburst kilt trouser",
+        "price": "15000",
+        "description": "Here goes the description of the product."
+    },
+    {
+        "image": "./assets/imgs/products/top-three.jpeg",
+        "name": "The starburst metallic hoodie dress",
+        "price": "28000",
+        "description": "Here goes the description of the product."
+    }
+];
+
+const menus = [{
         menuName: 'Home',
         link: './'
     },
@@ -113,8 +109,7 @@ const menus = [
     {
         menuName: 'Shop',
         dropDown: true,
-        subMenuItems: [
-            {
+        subMenuItems: [{
                 menuName: 'Products',
                 link: './products.html'
             },
@@ -127,6 +122,45 @@ const menus = [
                 link: './products.html'
             }
         ]
+    }
+];
+
+const sizeList = ['XS', 'S', 'M', 'L', 'XL'];
+let selectedSize = '';
+let notificationContainer = document.getElementById("notification-container");
+let notificationInfoContainer = document.getElementById("notification-info");
+let onload = false;
+let modal = new bootstrap.Modal(document.getElementById('myModal'));
+let shippingFormFields = [{
+        name: 'First Name',
+        key: 'firstName',
+        type: 'text'
+    },
+    {
+        name: 'Last Name',
+        key: 'lastName',
+        type: 'text'
+    },
+    {
+        name: 'Email',
+        key: 'email',
+        type: 'email'
+    },
+    {
+        name: 'Pincode',
+        key: 'pincode',
+        type: 'number'
+    }
+];
+let billingFormFields = [{
+        name: 'First Name',
+        key: 'firstName',
+        type: 'text'
+    },
+    {
+        name: 'Last Name',
+        key: 'lastName',
+        type: 'text'
     }
 ];
 
@@ -165,11 +199,12 @@ function generateMenus() {
     }
     menuContainer.innerHTML = elem;
 }
+
 function generateSizeListBoxes(sizeName) {
     let sizeBoxesContainer = document.getElementById('size-boxes-container');
     let elem = '';
     for (const size of sizeList) {
-        elem += `<div class="boxes ${sizeName && sizeName == size ? ' highlight' : ''}" onclick = "toggleSizeClass(this)"> ${size}</div> `;
+        elem += `<div class="boxes ${sizeName && sizeName.trim() == size.trim() ? ' highlight' : ''}" onclick = "toggleSizeClass(this)"> ${size}</div> `;
     }
     sizeBoxesContainer.innerHTML = elem;
 }
@@ -178,6 +213,7 @@ function toggleSizeClass(box) {
     selectedSize = box.innerHTML;
     generateSizeListBoxes(box.innerHTML);
 }
+
 function addToCart() {
 
     // 1. Product details like name, description, image, price
@@ -209,7 +245,9 @@ function addToCart() {
             cart = [productDetail];
         }
         setCartToLocalStorage(cart);
-        window.location = './cart.html';
+        // window.location = './cart.html';
+        showNotification(productName, ' has been added to cart.', true);
+        getTotalCartItemNumber(true);
     } else {
         alert("Please select size and quantity");
     }
@@ -217,6 +255,8 @@ function addToCart() {
 
 
 function generateProducts() {
+    onload = true;
+
     getTotalCartItemNumber();
     let productsContainer = document.getElementById("products-container");
     let elem = '';
@@ -227,7 +267,7 @@ function generateProducts() {
         elem += `<div class="overlay transition"></div> `;
         elem += `<div class="icons-container d-flex flex-column transition"> `;
         elem += `<i i class="far fa-eye eyeIcon p-3" onclick = "saveProduct('${name}','${price}','${image}','${description}')"></i> `;
-        elem += `<i i class="fas fa-heart heartIcon p-3 ${(isInWishList(name) != -1) ? 'like-btn-active' : ''}"  onclick = "addToWishList('${name}','${price}','${image}','${description}')"></i> `;
+        elem += `<i i class="fas fa-heart heartIcon p-3 ${(isInWishList(name) != -1) ? 'like-btn-active' : ''}"  onclick = "addToWishList('${name}','${price}','${image}','${description}', true)"></i> `;
         elem += `</div> `;
         elem += `<img src = "${image}" alt = ""> `;
         elem += `<div class="col text-content d-flex flex-column align-items-center pt-2"> `;
@@ -246,7 +286,8 @@ function isInWishList(name) {
     let wishList = getWishListItems();
     return getProductIndexFromWishList(wishList, name);
 }
-function addToWishList(name, price, image, description) {
+
+function addToWishList(name, price, image, description, listProducts) {
     let productIndex = isInWishList(name);
     let wishList = getWishListItems();
 
@@ -262,17 +303,35 @@ function addToWishList(name, price, image, description) {
         wishList.splice(productIndex, 1);
     }
     localStorage.setItem('wishList', JSON.stringify(wishList));
-    generateProducts();
+    checkWishList(name);
+    if (listProducts)
+        generateProducts();
 }
+
+function closeNotification() {
+    notificationContainer.style.opacity = '0';
+}
+
+function showNotification(name, message, success, error, warning) {
+    notificationInfoContainer.innerHTML = `<strong>${name}</strong> ${message}`;
+    notificationInfoContainer.style.color = success ? "#28a745" : "#f00";
+    notificationContainer.style.opacity = '1';
+    setTimeout(() => {
+        closeNotification();
+    }, 10000);
+}
+
 function setWishListToLocalStorage(wishList) {
     localStorage.setItem('wishList', JSON.stringify(wishList));
 }
+
 function getProductIndexFromWishList(wishList, productName) {
     return wishList.findIndex((wl) => {
         return wl.productName === productName;
     });
 
 }
+
 function getWishListItems() {
     let wishList = localStorage.getItem('wishList');
     if (wishList)
@@ -289,10 +348,12 @@ function setProductDetailsInSessionStorage(name, price, image, description) {
     localStorage.setItem('productImage', image);
     localStorage.setItem('productDescription', description);
 }
+
 function saveProduct(name, price, image, description) {
     setProductDetailsInSessionStorage(name, price, image, description);
     window.location = "./productDetails.html";
 }
+
 function getProductDetailsFromSessionStorage() {
     const productName = localStorage.getItem("productName");
     const productImage = localStorage.getItem("productImage");
@@ -331,20 +392,34 @@ function checkWishList(name) {
     let wishListIcon = document.getElementById('icon-container-heart');
     const { productName, productImage, productPrice, productDescription } = getProductDetailsFromSessionStorage();
     if (isInWishList(name) != -1) {
-        wishListIcon.innerHTML = `<i class="fas fa-heart fs-5" onclick="addToWishList('${productName}','${productPrice}','${productImage}','${productDescription}')" style="color:#f00"></i>`;
+        if (wishListIcon)
+            wishListIcon.innerHTML = `<i class="fas fa-heart fs-5" onclick="addToWishList('${productName}','${productPrice}','${productImage}','${productDescription}', false)" style="color:#f00;cursor:pointer;"></i>`;
+        if (onload) {
+            showNotification(name, "has been added to wishlist.", true);
+        } else {
+            onload = true;
+        }
     } else {
-        wishListIcon.innerHTML = `<i class="fas fa-heart fs-5" onclick="addToWishList('${productName}','${productPrice}','${productImage}','${productDescription}')"></i>`;
+        if (onload) {
+            showNotification(name, "has been removed from wishlist.", false);
+        } else {
+            onload = true;
+        }
+        if (wishListIcon)
+            wishListIcon.innerHTML = `<i style="cursor:pointer;" class="fas fa-heart fs-5" onclick="addToWishList('${productName}','${productPrice}','${productImage}','${productDescription}', false)"></i>`;
     }
-    
 }
-function getTotalCartItemNumber() {
-    generateMenus();
+
+function getTotalCartItemNumber(onlyCartNumber) {
+    if (!onlyCartNumber)
+        generateMenus();
     let cart = localStorage.getItem('cart');
     if (cart) {
         cart = JSON.parse(cart);
         document.getElementById("cart-item-total").innerHTML = cart.length;
     }
 }
+
 function populateCart() {
     getTotalCartItemNumber();
     let cart = getCartItems();
@@ -397,12 +472,14 @@ function getCartItems() {
         return JSON.parse(cart);
     return [];
 }
+
 function getProductIndexFromCart(cart, productName) {
     return cart.findIndex((ct) => {
         return ct.productName === productName;
     });
 
 }
+
 function updateQuantity(event, box, productName, quantity) {
     if (event.keyCode == 13) {
         if (box.value !== '' && box.value !== quantity) {
@@ -417,6 +494,7 @@ function updateQuantity(event, box, productName, quantity) {
         }
     }
 }
+
 function setCartToLocalStorage(cart) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
@@ -428,4 +506,71 @@ function deleteItemFromCart(productName) {
     cart.splice(productIndex, 1);
     setCartToLocalStorage(cart);
     populateCart();
+}
+
+function generateFormFieldID(shipping, key) {
+    return shipping ? `shipping-${key}` : `billing-${key}`;
+}
+
+function getForm(shipping) {
+    let elem = '';
+    let fieldsData = [];
+    if (shipping)
+        fieldsData = shippingFormFields.slice();
+    else
+        fieldsData = billingFormFields.slice();
+    for (const fieldObject of fieldsData) {
+        elem += `<div class="row pt-2 pb-2 bottom-border">`
+        elem += `<div class="col-6 border-right">${fieldObject.name}</div>`
+        elem += `<div class="col-6">`;
+        elem += `<input type="${fieldObject.type}" id="${generateFormFieldID(shipping, fieldObject.key)}"/>`;
+        elem += `</div>`
+        elem += `</div>`;
+    }
+    return elem;
+}
+
+// save address to local storage
+function saveAddressToLocalStorage(key, value) {
+    localStorage.setItem(key, value);
+}
+
+function saveAddress() {
+
+    let modalSaveButtonContainer = document.getElementById("save-button");
+    if (modalSaveButtonContainer.innerHTML == "Save Shipping Address") {
+        let fields = shippingFormFields.slice();
+        let shippingObject = {};
+        for (const field of fields) {
+            shippingObject[field.key] = document.getElementById(`shipping-${field.key}`).value;
+        }
+        modal.hide();
+        saveAddressToLocalStorage('shipping', JSON.stringify(shippingObject));
+    } else {
+        let fields = billingFormFields.slice();
+        let billingObject = {};
+        for (const field of fields) {
+            billingObject[field.key] = document.getElementById(`billing-${field.key}`).value;
+        }
+        modal.hide();
+        saveAddressToLocalStorage('billing', JSON.stringify(billingObject));
+    }
+}
+
+
+// managing address section
+function populateAddressSection(shipping) {
+    let modalTitleContainer = document.getElementById('modal-title');
+    let modalBodyContainer = document.getElementById('modal-body');
+    let modalSaveButtonContainer = document.getElementById("save-button");
+    if (shipping) {
+        modalTitleContainer.innerHTML = 'Shipping Address';
+        modalBodyContainer.innerHTML = getForm(true);
+        modalSaveButtonContainer.innerHTML = "Save Shipping Address";
+    } else {
+        modalTitleContainer.innerHTML = 'Billing Address';
+        modalBodyContainer.innerHTML = getForm();
+        modalSaveButtonContainer.innerHTML = "Save Billing Address";
+    }
+    modal.show();
 }

@@ -15,6 +15,10 @@
 </head>
 
 <body onload="generateProducts()">
+    <div class="notification-container" id="notification-container">
+        <div class="close-button" onclick="closeNotification()">X</div>
+        <div class="info" id="notification-info">Product has been added to wishlist successfullly</div>
+    </div>
     <div class="container-fluid">
         <div class="row dark-grey">
             <div class="container">
@@ -72,7 +76,7 @@
 
                 <div class="collapse navbar-collapse d-flex col-8 justify-content-start" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto my-navbar d-flex justify-content-between" id="menu-container">
-                        
+
                     </ul>
 
                 </div>
