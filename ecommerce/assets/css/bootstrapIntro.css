@@ -307,3 +307,13 @@ a:active {
     top: 3%;
     cursor: pointer;
 }
+
+.address-container {
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.address-container:nth-child(2) {
+    margin-top: 1rem;
+}

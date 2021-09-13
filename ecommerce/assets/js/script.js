@@ -125,12 +125,6 @@ const menus = [{
     }
 ];
 
-const sizeList = ['XS', 'S', 'M', 'L', 'XL'];
-let selectedSize = '';
-let notificationContainer = document.getElementById("notification-container");
-let notificationInfoContainer = document.getElementById("notification-info");
-let onload = false;
-let modal = new bootstrap.Modal(document.getElementById('myModal'));
 let shippingFormFields = [{
         name: 'First Name',
         key: 'firstName',
@@ -161,8 +155,28 @@ let billingFormFields = [{
         name: 'Last Name',
         key: 'lastName',
         type: 'text'
+    },
+    {
+        name: 'Email',
+        key: 'email',
+        type: 'email'
+    },
+    {
+        name: 'Pincode',
+        key: 'pincode',
+        type: 'number'
     }
 ];
+
+
+
+const sizeList = ['XS', 'S', 'M', 'L', 'XL'];
+let selectedSize = '';
+let notificationContainer = document.getElementById("notification-container");
+let notificationInfoContainer = document.getElementById("notification-info");
+let onload = false;
+let modal = new bootstrap.Modal(document.getElementById('myModal'));
+
 
 
 
@@ -420,8 +434,42 @@ function getTotalCartItemNumber(onlyCartNumber) {
     }
 }
 
+function populateAddress() {
+    let shippingAddress = getAddressFromLocalStorage('shipping');
+    let billingAddress = getAddressFromLocalStorage('billing');
+    getAddressLayout(shippingAddress, 'shipping-table');
+    getAddressLayout(billingAddress, 'billing-table');
+    if (billingAddress) {
+        document.getElementById("billing-address-checkbox").setAttribute('checked', true);
+    }
+}
+
+function getAddressLayout(obj, containerName) {
+    let addressContainer = document.getElementById(containerName);
+    let elem = '';
+    if (obj) {
+        let addressObject = JSON.parse(obj);
+
+        for (const addressKey of Object.keys(addressObject)) {
+            elem += `<div class="col-6 d-flex justify-content-start align-items-center p-1">${getNameForKey(addressKey)}</div>`;
+            elem += `<div class="col-6 d-flex justify-content-start align-items-center p-1">${addressObject[addressKey]}</div>`;
+        }
+
+    } else {
+        elem += `<h2>No address added yet.</h2>`;
+    }
+    addressContainer.innerHTML = elem;
+}
+
+function getNameForKey(addressKey) {
+    let addressField = shippingFormFields.find((shipAddress) => shipAddress.key === addressKey);
+    return addressField.name;
+}
+
+
 function populateCart() {
     getTotalCartItemNumber();
+    populateAddress();
     let cart = getCartItems();
     let cartDetailContainer = document.getElementById("cart-details");
     let totalAmountContainer = document.getElementById("total-amount");
@@ -535,6 +583,17 @@ function saveAddressToLocalStorage(key, value) {
     localStorage.setItem(key, value);
 }
 
+function removeAddressFromLocalStorage(key) {
+
+    localStorage.removeItem(key);
+}
+
+// get address from local storage
+function getAddressFromLocalStorage(key) {
+    return localStorage.getItem(key);
+}
+
+
 function saveAddress() {
 
     let modalSaveButtonContainer = document.getElementById("save-button");
@@ -555,6 +614,7 @@ function saveAddress() {
         modal.hide();
         saveAddressToLocalStorage('billing', JSON.stringify(billingObject));
     }
+    populateAddress();
 }
 
 
@@ -568,9 +628,21 @@ function populateAddressSection(shipping) {
         modalBodyContainer.innerHTML = getForm(true);
         modalSaveButtonContainer.innerHTML = "Save Shipping Address";
     } else {
-        modalTitleContainer.innerHTML = 'Billing Address';
+        modalTitleContainer.innerHTML = 'Billing Address ';
         modalBodyContainer.innerHTML = getForm();
         modalSaveButtonContainer.innerHTML = "Save Billing Address";
     }
     modal.show();
+}
+
+function copyShippingAddress(box) {
+    if (box.checked) {
+        let shippingAddress = getAddressFromLocalStorage('shipping');
+        if (shippingAddress) {
+            saveAddressToLocalStorage('billing', shippingAddress);
+        }
+    } else {
+        removeAddressFromLocalStorage('billing');
+    }
+    populateAddress();
 }
