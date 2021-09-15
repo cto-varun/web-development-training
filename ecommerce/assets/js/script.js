@@ -176,7 +176,7 @@ let notificationContainer = document.getElementById("notification-container");
 let notificationInfoContainer = document.getElementById("notification-info");
 let onload = false;
 let modal = new bootstrap.Modal(document.getElementById('myModal'));
-
+let placeOrder = false;
 
 
 
@@ -439,12 +439,10 @@ function populateAddress() {
     let billingAddress = getAddressFromLocalStorage('billing');
     getAddressLayout(shippingAddress, 'shipping-table');
     getAddressLayout(billingAddress, 'billing-table');
-    if (billingAddress) {
-        document.getElementById("billing-address-checkbox").setAttribute('checked', true);
-    }
 }
 
 function getAddressLayout(obj, containerName) {
+    let addressType = containerName.split('-')[0];
     let addressContainer = document.getElementById(containerName);
     let elem = '';
     if (obj) {
@@ -458,6 +456,9 @@ function getAddressLayout(obj, containerName) {
     } else {
         elem += `<h2>No address added yet.</h2>`;
     }
+    elem += `<div class="col d-flex justify-content-end align-items-center">`;
+    elem += `<button type="button" class="btn btn-primary" onclick="populateAddressSection(${addressType == "shipping" ? true : false})">Edit Address</button>`;
+    elem += `</div>`;
     addressContainer.innerHTML = elem;
 }
 
@@ -563,19 +564,30 @@ function generateFormFieldID(shipping, key) {
 function getForm(shipping) {
     let elem = '';
     let fieldsData = [];
-    if (shipping)
+    let addressDetails = {};
+    if (shipping) {
         fieldsData = shippingFormFields.slice();
-    else
+        addressDetails = getAddressFromLocalStorage('shipping');
+    } else {
         fieldsData = billingFormFields.slice();
+        addressDetails = getAddressFromLocalStorage('billing');
+    }
+    addressDetails = JSON.parse(addressDetails);
     for (const fieldObject of fieldsData) {
         elem += `<div class="row pt-2 pb-2 bottom-border">`
         elem += `<div class="col-6 border-right">${fieldObject.name}</div>`
         elem += `<div class="col-6">`;
-        elem += `<input type="${fieldObject.type}" id="${generateFormFieldID(shipping, fieldObject.key)}"/>`;
+        elem += `<input type="${fieldObject.type}" value="${renderValue(fieldObject.key, addressDetails)}" id="${generateFormFieldID(shipping, fieldObject.key)}"/>`;
         elem += `</div>`
         elem += `</div>`;
     }
     return elem;
+}
+
+function renderValue(key, addressDetails) {
+    if (addressDetails)
+        return addressDetails[key];
+    return '';
 }
 
 // save address to local storage
@@ -584,7 +596,6 @@ function saveAddressToLocalStorage(key, value) {
 }
 
 function removeAddressFromLocalStorage(key) {
-
     localStorage.removeItem(key);
 }
 
@@ -594,16 +605,26 @@ function getAddressFromLocalStorage(key) {
 }
 
 
-function saveAddress() {
+function saveInfo() {
 
     let modalSaveButtonContainer = document.getElementById("save-button");
-    if (modalSaveButtonContainer.innerHTML == "Save Shipping Address") {
+    if (modalSaveButtonContainer.innerHTML == "Place Order") {
+        let cardNumberContainer = document.getElementById("cardNumber");
+        let cardExpiryContainer = document.getElementById("cardExpiry");
+        let cardCVVContainer = document.getElementById("cvv");
+        let cardObject = {
+            cardNumber: cardNumberContainer.value,
+            cardExpiry: cardExpiryContainer.value,
+            cardCVV: cardCVVContainer.value,
+        };
+        saveCardInfo(cardObject);
+        saveOrder();
+    } else if (modalSaveButtonContainer.innerHTML == "Save Shipping Address") {
         let fields = shippingFormFields.slice();
         let shippingObject = {};
         for (const field of fields) {
             shippingObject[field.key] = document.getElementById(`shipping-${field.key}`).value;
         }
-        modal.hide();
         saveAddressToLocalStorage('shipping', JSON.stringify(shippingObject));
     } else {
         let fields = billingFormFields.slice();
@@ -611,27 +632,46 @@ function saveAddress() {
         for (const field of fields) {
             billingObject[field.key] = document.getElementById(`billing-${field.key}`).value;
         }
-        modal.hide();
         saveAddressToLocalStorage('billing', JSON.stringify(billingObject));
     }
+    modal.hide();
     populateAddress();
+}
+
+function saveOrder() {
+
+}
+
+function saveCardInfo(cardObject) {
+    localStorage.setItem('card', JSON.stringify(cardObject));
 }
 
 
 // managing address section
-function populateAddressSection(shipping) {
+function populateAddressSection(shipping, paymentPage) {
     let modalTitleContainer = document.getElementById('modal-title');
     let modalBodyContainer = document.getElementById('modal-body');
     let modalSaveButtonContainer = document.getElementById("save-button");
-    if (shipping) {
-        modalTitleContainer.innerHTML = 'Shipping Address';
-        modalBodyContainer.innerHTML = getForm(true);
-        modalSaveButtonContainer.innerHTML = "Save Shipping Address";
+    if (paymentPage) {
+        $.get("./payment-page.html", function(res) {
+            modalTitleContainer.innerHTML = 'Enter Card Details';
+            modalBodyContainer.innerHTML = res;
+            modalSaveButtonContainer.innerHTML = "Place Order";
+            placeOrder = true;
+        });
     } else {
-        modalTitleContainer.innerHTML = 'Billing Address ';
-        modalBodyContainer.innerHTML = getForm();
-        modalSaveButtonContainer.innerHTML = "Save Billing Address";
+        if (shipping) {
+            modalTitleContainer.innerHTML = 'Shipping Address';
+            modalBodyContainer.innerHTML = getForm(true);
+            modalSaveButtonContainer.innerHTML = "Save Shipping Address";
+        } else {
+            modalTitleContainer.innerHTML = 'Billing Address ';
+            modalBodyContainer.innerHTML = getForm();
+            modalSaveButtonContainer.innerHTML = "Save Billing Address";
+        }
     }
+
+
     modal.show();
 }
 
