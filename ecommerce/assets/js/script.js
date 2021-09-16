@@ -120,6 +120,10 @@ const menus = [{
             {
                 menuName: 'Reset.Restart',
                 link: './products.html'
+            },
+            {
+                menuName: 'My Orders',
+                link: './orders.html'
             }
         ]
     }
@@ -475,44 +479,50 @@ function populateCart() {
     let cartDetailContainer = document.getElementById("cart-details");
     let totalAmountContainer = document.getElementById("total-amount");
     let subTotalAmountContainer = document.getElementById("subtotal-amount");
-    let total = 0;
     if (cart.length > 0) {
-        let elem = '';
-        for (const product of cart) {
-            let subTotal = +product.productPrice * +product.quantity;
-            total = total + subTotal;
-            elem += `<div class="row pt-1 pb-1"> `;
-            elem += `<div class="col-6"> `;
-            elem += `<div class="row align-items-center"> `;
-            elem += `<div class="col-1" style = "cursor:pointer;color:#F00" onclick = "deleteItemFromCart('${product.productName}')"> X</div> `;
-            elem += `<div class="col-2"> `;
-            elem += `<img src = "${product.productImage}"  width = "50%" /> `;
-            elem += `</div> `;
-            elem += `<div class="col-9 text-left"> `;
-            elem += `${product.productName} `;
-            elem += `</div> `;
-            elem += `</div> `;
-            elem += `</div> `;
-            elem += `<div class="col-6 pb-3"> `;
-            elem += `<div class="row justify-content-start align-items-center"> `;
-            elem += `<div class="col-4 text-center">₹ ${product.productPrice}</div> `;
-            elem += `<div class="col-4 d-flex justify-content-center align-items-center"> `;
-            elem += `<input type="number" id="${product.productName}" onkeydown="updateQuantity(event,this,'${product.productName}', '${product.quantity}','${product.productPrice}')" value="${product.quantity}" class="cart-quantity-box" /> `;
-            elem += `</div> `;
-            elem += `<div class="col-4 text-center">₹ ${subTotal}</div> `;
-            elem += `</div> `;
-            elem += `</div> `;
-            elem += `</div> `;
-            elem += `<hr /> `;
-        }
+        let [total, elem] = renderDesign(0, true, cart);
         subTotalAmountContainer.innerHTML = total;
         totalAmountContainer.innerHTML = total;
         cartDetailContainer.innerHTML = elem;
-        // if (currentSelection)
-        //     document.getElementById(currentSelection).focus();
     } else {
         window.location = './products.html';
     }
+}
+
+function renderDesign(total, cart, arr) {
+    let elem = '';
+    for (const product of arr) {
+        let subTotal = +product.productPrice * +product.quantity;
+        total = total + subTotal;
+        elem += `<div class="row pt-1 pb-1"> `;
+        elem += `<div class="col-6"> `;
+        elem += `<div class="row align-items-center"> `;
+        if (cart)
+            elem += `<div class="col-1" style = "cursor:pointer;color:#F00" onclick = "deleteItemFromCart('${product.productName}')"> X</div> `;
+        elem += `<div class="col-2"> `;
+        elem += `<img src = "${product.productImage}"  width = "50%" /> `;
+        elem += `</div> `;
+        elem += `<div class="col-9 text-left"> `;
+        elem += `${product.productName} `;
+        elem += `</div> `;
+        elem += `</div> `;
+        elem += `</div> `;
+        elem += `<div class="col-6 pb-3"> `;
+        elem += `<div class="row justify-content-start align-items-center"> `;
+        elem += `<div class="col-4 text-center">₹ ${product.productPrice}</div> `;
+        elem += `<div class="col-4 d-flex justify-content-center align-items-center"> `;
+        if (cart)
+            elem += `<input type="number" id="${product.productName}" onkeydown="updateQuantity(event,this,'${product.productName}', '${product.quantity}','${product.productPrice}')" value="${product.quantity}" class="cart-quantity-box" /> `;
+        else
+            elem += product.quantity;
+        elem += `</div> `;
+        elem += `<div class="col-4 text-center">₹ ${subTotal}</div> `;
+        elem += `</div> `;
+        elem += `</div> `;
+        elem += `</div> `;
+        elem += `<hr /> `;
+    }
+    return [total, elem];
 }
 
 function getCartItems() {
@@ -520,6 +530,17 @@ function getCartItems() {
     if (cart)
         return JSON.parse(cart);
     return [];
+}
+
+function getOrders() {
+    let orders = localStorage.getItem('orders');
+    if (orders)
+        return JSON.parse(orders);
+    return {};
+}
+
+function saveOrderToLocalStorage(orders) {
+    localStorage.setItem('orders', JSON.stringify(orders));
 }
 
 function getProductIndexFromCart(cart, productName) {
@@ -639,8 +660,29 @@ function saveInfo() {
 }
 
 function saveOrder() {
-
+    let cart = getCartItems();
+    let orders = getOrders();
+    let products = [];
+    if (orders.products && orders.products.length > 0) {
+        products = [...order.products, ...cart];
+    } else {
+        products = [...cart];
+    }
+    orders = {
+        "products": products,
+        "billingAddress": getAddressFromLocalStorage('billing'),
+        "shippingAddress": getAddressFromLocalStorage('shipping')
+    };
+    localStorage.clear();
+    saveOrderToLocalStorage(orders);
+    window.location = '/';
 }
+
+function resetAll() {
+    localStorage.setItem('cart', []);
+    localStorage.setItem('billing')
+}
+
 
 function saveCardInfo(cardObject) {
     localStorage.setItem('card', JSON.stringify(cardObject));
@@ -685,4 +727,17 @@ function copyShippingAddress(box) {
         removeAddressFromLocalStorage('billing');
     }
     populateAddress();
+}
+
+function fetchOrders() {
+    const orders = getOrders();
+    // let cartDetailContainer = document.getElementById("cart-details");
+    // let totalAmountContainer = document.getElementById("total-amount");
+    // let subTotalAmountContainer = document.getElementById("subtotal-amount");
+    console.log(orders.products);
+    let ordersContainer = document.getElementById('orders-container');
+    if (orders.products.length > 0) {
+        let [total, elem] = renderDesign(0, false, orders.products);
+        ordersContainer.innerHTML = elem;
+    }
 }
