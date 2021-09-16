@@ -730,6 +730,7 @@ function copyShippingAddress(box) {
 }
 
 function fetchOrders() {
+    generateMenus();
     const orders = getOrders();
     // let cartDetailContainer = document.getElementById("cart-details");
     // let totalAmountContainer = document.getElementById("total-amount");
