@@ -664,7 +664,7 @@ function saveOrder() {
     let orders = getOrders();
     let products = [];
     if (orders.products && orders.products.length > 0) {
-        products = [...order.products, ...cart];
+        products = [...orders.products, ...cart];
     } else {
         products = [...cart];
     }
@@ -675,7 +675,7 @@ function saveOrder() {
     };
     localStorage.clear();
     saveOrderToLocalStorage(orders);
-    window.location = '/';
+    window.location = './orders.html';
 }
 
 function resetAll() {
@@ -731,6 +731,7 @@ function copyShippingAddress(box) {
 
 function fetchOrders() {
     generateMenus();
+    getTotalCartItemNumber();
     const orders = getOrders();
     // let cartDetailContainer = document.getElementById("cart-details");
     // let totalAmountContainer = document.getElementById("total-amount");
