@@ -92,7 +92,7 @@ const products = [{
 
 const menus = [{
         menuName: 'Home',
-        link: './'
+        link: './home'
     },
     {
         menuName: 'About',
@@ -100,11 +100,11 @@ const menus = [{
     },
     {
         menuName: 'Contact',
-        link: './'
+        link: './contact'
     },
     {
         menuName: 'Services',
-        link: './'
+        link: './services'
     },
     {
         menuName: 'Shop',
@@ -123,7 +123,7 @@ const menus = [{
             },
             {
                 menuName: 'My Orders',
-                link: './orders.html'
+                link: './orders'
             }
         ]
     }
@@ -178,6 +178,7 @@ const sizeList = ['XS', 'S', 'M', 'L', 'XL'];
 let selectedSize = '';
 let notificationContainer = document.getElementById("notification-container");
 let notificationInfoContainer = document.getElementById("notification-info");
+let pageContentContainer = document.getElementById("page-content-container");
 let onload = false;
 let modal = new bootstrap.Modal(document.getElementById('myModal'));
 let placeOrder = false;
@@ -188,7 +189,7 @@ let placeOrder = false;
 function generateSubmenu(subMenuItems) {
     var elem = '';
     for (const menuItem of subMenuItems) {
-        elem += `<li><a class="dropdown-item" href="${menuItem.link}">${menuItem.menuName}</a></li>`;
+        elem += `<li><div  onclick="openPage('${menuItem.link}')" class="dropdown-item">${menuItem.menuName}</div></li>`;
     }
     return elem;
 
@@ -201,21 +202,36 @@ function generateMenus() {
     for (const menu of menus) {
         if (menu.dropDown) {
             elem += `<li class="nav-item dropdown">`;
-            elem += `<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">`;
+            elem += `<div  onclick="openPage('${menu.link}')" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">`;
             elem += menu.menuName;
-            elem += `</a>`;
+            elem += `</div>`;
             elem += `<ul class="dropdown-menu" aria-labelledby="navbarDropdown">`;
             elem += generateSubmenu(menu.subMenuItems);
             elem += `</ul>`;
             elem += `</li>`;
         } else {
             elem += `<li class="nav-item ${i === 0 ? ' active' : ''}">`;
-            elem += `<a class="nav-link" href="${menu.link}">${menu.menuName} <span class="sr-only">(current)</span></a>`;
+            elem += `<div onclick="openPage('${menu.link}')" class="nav-link" >${menu.menuName} <span class="sr-only">(current)</span></div>`;
             elem += `</li>`;
         }
         i++;
     }
     menuContainer.innerHTML = elem;
+}
+
+
+function openPage(pageName) {
+    console.log(pageName);
+    if (pageName) {
+        $(pageContentContainer).stop().animate({
+            opacity: '0'
+        }, 500, function() {
+            $(this).load(`${pageName}.html`).stop().animate({
+                opacity: '1'
+            }, 500);
+        });
+    } else
+        $(pageContentContainer).load(`home.html`);
 }
 
 function generateSizeListBoxes(sizeName) {
@@ -429,6 +445,7 @@ function checkWishList(name) {
 }
 
 function getTotalCartItemNumber(onlyCartNumber) {
+    openPage();
     if (!onlyCartNumber)
         generateMenus();
     let cart = localStorage.getItem('cart');
@@ -678,11 +695,6 @@ function saveOrder() {
     window.location = './orders.html';
 }
 
-function resetAll() {
-    localStorage.setItem('cart', []);
-    localStorage.setItem('billing')
-}
-
 
 function saveCardInfo(cardObject) {
     localStorage.setItem('card', JSON.stringify(cardObject));
@@ -733,13 +745,11 @@ function fetchOrders() {
     generateMenus();
     getTotalCartItemNumber();
     const orders = getOrders();
-    // let cartDetailContainer = document.getElementById("cart-details");
-    // let totalAmountContainer = document.getElementById("total-amount");
-    // let subTotalAmountContainer = document.getElementById("subtotal-amount");
-    console.log(orders.products);
     let ordersContainer = document.getElementById('orders-container');
+    let totalAmount = document.getElementById("totalAmount");
     if (orders.products.length > 0) {
         let [total, elem] = renderDesign(0, false, orders.products);
+        totalAmount.innerHTML = total;
         ordersContainer.innerHTML = elem;
     }
 }
